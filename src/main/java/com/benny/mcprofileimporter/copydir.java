@@ -21,7 +21,7 @@ import java.util.zip.ZipFile;
 import javax.swing.*;
 
 import org.apache.commons.io.FileUtils;
-import main.java.org.apache.commons.io.IOUtils;
+import org.apache.commons.io.IOUtils;
 
 public class copydir extends JPanel implements ActionListener
 {
@@ -90,8 +90,10 @@ public class copydir extends JPanel implements ActionListener
 		}
 		System.out.println("Copying Files");
 		tempProfile = File.createTempFile("tempProfile", null);
+		tempProfile.deleteOnExit();
 		FileUtils.copyInputStreamToFile(getClass().getResourceAsStream("/main/resources/modpack/profile.json"), tempProfile);
 		File tempPack = File.createTempFile("tempPack", null);
+		tempPack.deleteOnExit();
 		FileUtils.copyInputStreamToFile(getClass().getResourceAsStream("/main/resources/modpack/pack.zip"), tempPack);
 		
 		System.out.println("Unzipping Files");

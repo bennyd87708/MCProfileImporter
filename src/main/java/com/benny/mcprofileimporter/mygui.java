@@ -67,7 +67,7 @@ public class mygui extends JPanel
 		info = new JLabel("select .minecraft directory if non-default", JLabel.CENTER);
 		info.setAlignmentX(Component.CENTER_ALIGNMENT);
 		directory = new JTextField(workingDirectory += "\\.minecraft");
-			directory.setText("C:\\Users\\bennyd87708\\Desktop\\testing\\.gay");
+			directory.setText("C:\\Users\\bennyd87708\\Desktop\\testing\\.testversion");
 		browser = new JPanel();
 		browser.setLayout(new BoxLayout(browser, BoxLayout.LINE_AXIS));
 		browser.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 10));

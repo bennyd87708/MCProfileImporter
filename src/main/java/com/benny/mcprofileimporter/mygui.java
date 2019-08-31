@@ -18,7 +18,7 @@ public class mygui extends JPanel
 	private static final long serialVersionUID = 1L;
 	JButton	browse;
 	JFileChooser chooser;
-	static JTextField directory;
+	public static JTextField directory;
 	JLabel intro;
 	JPanel browser;
 	JLabel info;
@@ -28,7 +28,7 @@ public class mygui extends JPanel
 	public static JFrame frame;
 	ImageIcon icon;
 	Image image;
-	Scanner text;
+	public static Scanner text;
 	
 	public static String workingDirectory;
 	
@@ -67,6 +67,7 @@ public class mygui extends JPanel
 		info = new JLabel("select .minecraft directory if non-default", JLabel.CENTER);
 		info.setAlignmentX(Component.CENTER_ALIGNMENT);
 		directory = new JTextField(workingDirectory += "\\.minecraft");
+			directory.setText("C:\\Users\\bennyd87708\\Desktop\\testing\\.gay");
 		browser = new JPanel();
 		browser.setLayout(new BoxLayout(browser, BoxLayout.LINE_AXIS));
 		browser.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 10));
@@ -90,7 +91,7 @@ public class mygui extends JPanel
 		add(browser, BorderLayout.CENTER);
 		add(Box.createRigidArea(new Dimension(0, 15)));
 		proceed = new JButton("Proceed");
-		proceed.addActionListener(new copydir(directory.getText()));
+		proceed.addActionListener(new copydir());
 		proceed.setAlignmentX(Component.CENTER_ALIGNMENT);
 		reminder = new JLabel("make sure your MC launcher is closed!");
 		reminder.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -101,7 +102,7 @@ public class mygui extends JPanel
 	public void dirBrowser()
 	{
 		chooser = new JFileChooser();	
-		chooser.setCurrentDirectory(new File(workingDirectory += "\\.minecraft"));
+		chooser.setCurrentDirectory(new File(workingDirectory += "\\.minecraft"));		
 		chooser.setDialogTitle(choosertitle);
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		chooser.setAcceptAllFileFilterUsed(false);

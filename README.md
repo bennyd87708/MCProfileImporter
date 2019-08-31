@@ -12,8 +12,7 @@ MCProfileImporter is a tool for importing custom modpacks directly into the Mine
 - Replace "src\main\resources\gui\logo.png" with your own square logo - should be at least 70x70px but smaller will work
 - Edit "src\main\resources\gui\text.txt" first line to change the text that appears in the launcher
 - Edit "src\main\resources\gui\text.txt" second line to change the pack name
-- Download dependency: apache's commons-io-2.6.jar
-- Import the project into Eclipse and add commons-io-2.6 as an external jar library
+- Import the project into Eclipse
 - Compile as runnable jar file
 
 ---
@@ -33,6 +32,6 @@ MCProfileImporter is a tool for importing custom modpacks directly into the Mine
 - more text config
 - fix starting minimized bug
 - automatic close after finish
-- use dependencies properly
 - fix double resources in github
 - download zip from web to decrease jar size
+- build with ant

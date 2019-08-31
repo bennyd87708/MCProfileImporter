@@ -21,9 +21,7 @@ import java.util.zip.ZipFile;
 import javax.swing.*;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-
-//import net.lingala.zip4j.exception.ZipException;
+import main.java.org.apache.commons.io.IOUtils;
 
 public class copydir extends JPanel implements ActionListener
 {

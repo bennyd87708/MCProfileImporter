@@ -26,18 +26,15 @@ public class copydir extends JPanel implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 	
-	static String minecraft;
-	static String packloc;
-	static String packName = mygui.text.nextLine();
-	
-	static File tempProfile;
-	
+	String minecraft;
+	String packloc;
+	String packName = mygui.text.nextLine();
+	File tempProfile;
 	JButton cancel;
 	JLabel info;
 	JFrame installer;
 	
-	
-	public copydir() {		
+	copydir() {		
 		installer = new JFrame("Installer");
 		installer.setResizable(false);
 		installer.addWindowListener(new	WindowAdapter()
@@ -58,7 +55,7 @@ public class copydir extends JPanel implements ActionListener
 			private static final long serialVersionUID = 1L;
 			@Override
 	        public void actionPerformed( ActionEvent e ) {
-				//cancel();
+				//cancel button
 	        }
 	    });
 		cancel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -74,13 +71,13 @@ public class copydir extends JPanel implements ActionListener
 		try {
 			install();
 		} catch (IOException e1) {
-			//big error boi
+			JOptionPane.showMessageDialog(new JFrame(), e1.toString(), "Dialog", JOptionPane.ERROR_MESSAGE);
 		}
 		mygui.reminder.setText("Installation Complete");
 	}
 	
 	@SuppressWarnings("deprecation")
-	public void install() throws IOException
+	void install() throws IOException
 	{
 		if(new File(packloc).exists())
 		{
@@ -97,41 +94,34 @@ public class copydir extends JPanel implements ActionListener
 		
 		System.out.println("Unzipping Files");
 		java.util.zip.ZipFile zipFile = new ZipFile(tempPack);
-		try {
-		  Enumeration<? extends ZipEntry> entries = zipFile.entries();
-		  while (entries.hasMoreElements()) {
-		    ZipEntry entry = entries.nextElement();
-		    File entryDestination = new File(packloc + "\\",  entry.getName());
-		    if (entry.isDirectory()) {
-		        entryDestination.mkdirs();
-		    } else {
-		        entryDestination.getParentFile().mkdirs();
-		        InputStream in = zipFile.getInputStream(entry);
-		        OutputStream out = new FileOutputStream(entryDestination);
-		        IOUtils.copy(in, out);
-		        IOUtils.closeQuietly(in);
-		        out.close();
-		    }
-		  }
-		} finally {
-		  zipFile.close();
-		}
+	    Enumeration<? extends ZipEntry> entries = zipFile.entries();
+	    while (entries.hasMoreElements()) {
+	    	ZipEntry entry = entries.nextElement();
+	    	File entryDestination = new File(packloc + "\\",  entry.getName());
+	    	if (entry.isDirectory()) {
+	    		entryDestination.mkdirs();
+	    	} else {
+	    		entryDestination.getParentFile().mkdirs();
+	    		InputStream in = zipFile.getInputStream(entry);
+	    		OutputStream out = new FileOutputStream(entryDestination);
+	    		IOUtils.copy(in, out);
+	    		IOUtils.closeQuietly(in);
+	    		out.close();
+	    	}
+	  	}
+		zipFile.close();
 		
 		System.out.println("Copying More Files");
 		FileUtils.copyDirectory(new File(packloc + "\\versions"), new File(minecraft + "\\versions"));
 		FileUtils.copyDirectory(new File(packloc + "\\libraries"), new File(minecraft + "\\libraries"));
 		
 		System.out.println("Adding Profile");
-		try {
-			addProfile();
-		} catch (IOException e1) {
-			System.out.println("Error Adding Profile");
-			System.out.println(e1);
-		}
+		addProfile();
+		
 		System.out.println("Installation Complete!");
 	}
 	
-    public static boolean deleteDirectory(File dir) {
+    boolean deleteDirectory(File dir) {
         if (dir.isDirectory()) {
             File[] children = dir.listFiles();
             for (int i = 0; i < children.length; i++) {
@@ -143,19 +133,19 @@ public class copydir extends JPanel implements ActionListener
         }
         return dir.delete();
     }
-	
-	public static boolean delete(String source) {
-		File file = new File(source);
-		return file.delete();
-	}
 
-	private static void addProfile() throws IOException
+	void addProfile() throws IOException
 	{
 		List<String> profile = Files.readAllLines(Paths.get(tempProfile.getPath()), StandardCharsets.UTF_8);
+		for(int i = 0; i < profile.size(); i++)
+		{
+			profile.set(i, "      " + profile.get(i));
+		}
 		profile.add(0, "    \"" + packName + "\" : {");
 		String dir = "      \"gameDir\" : \"" + packloc + "\",";
 		dir = dir.replace("\\", "\\\\");
 		profile.add(1, dir);
+		profile.add("    },");
 		List<String> lines = Files.readAllLines(Paths.get(minecraft + "\\launcher_profiles.json"), StandardCharsets.UTF_8);
 		for(int i = 0; i < lines.size(); i++)
 		{
@@ -178,18 +168,11 @@ public class copydir extends JPanel implements ActionListener
 		Files.write(Paths.get(minecraft + "\\launcher_profiles.json"), lines, StandardCharsets.UTF_8);
 	}
 	
-	public static boolean copy(InputStream source, String destination) {
-		boolean success = true;
+	void copy(InputStream source, String destination) throws IOException {
 		if(Paths.get(destination).toFile().exists())
 		{
-			delete(destination);
+			new File(destination).delete();
 		}
-		try {
-			Files.copy(source, Paths.get(destination), StandardCopyOption.REPLACE_EXISTING);
-		} catch (IOException ex) {
-			ex.printStackTrace();
-			success = false;
-		}
-		return success;
+		Files.copy(source, Paths.get(destination), StandardCopyOption.REPLACE_EXISTING);
 	}
 }

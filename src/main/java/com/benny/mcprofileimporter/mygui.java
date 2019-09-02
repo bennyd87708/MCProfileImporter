@@ -16,26 +16,25 @@ import java.util.Scanner;
 public class mygui extends JPanel
 {
 	private static final long serialVersionUID = 1L;
+
+	static JTextField directory;
+	static JLabel reminder;
+	static JFrame frame;
+	static Scanner text;
+	static String workingDirectory;
+	
 	JButton	browse;
 	JFileChooser chooser;
-	public static JTextField directory;
 	JLabel intro;
 	JPanel browser;
 	JLabel info;
-	public static JLabel reminder;
 	JButton proceed;
 	String choosertitle;
-	public static JFrame frame;
 	ImageIcon icon;
 	Image image;
-	public static Scanner text;
-	
-	public static String workingDirectory;
 	
 	public static void main(String[] args)
 	{
-		findMinecraftDir();
-		mygui panel = new mygui();
 		frame = new JFrame("MC Profile Importer");
 		frame.setResizable(false);
 		frame.addWindowListener(new	WindowAdapter()
@@ -45,6 +44,9 @@ public class mygui extends JPanel
 				System.exit(0);
 			}
 		});
+		findMinecraftDir();
+		mygui panel;
+		panel = new mygui();
 		frame.add(panel,"Center");
 		frame.setSize(350, 270);
 		frame.setVisible(true);
@@ -57,11 +59,10 @@ public class mygui extends JPanel
 	    BufferedImage resizedImg = new BufferedImage(70, 70, BufferedImage.TYPE_INT_ARGB);
 	    Graphics2D g2 = resizedImg.createGraphics();
 	    g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-	    try {
+		try {
 			g2.drawImage(ImageIO.read(getClass().getResourceAsStream("/main/resources/gui/logo.png")), 0, 0, 70, 70, null);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			JOptionPane.showMessageDialog(new JFrame(), e1.toString(), "Dialog", JOptionPane.ERROR_MESSAGE);
 		}
 	    g2.dispose();
 		icon = new ImageIcon(resizedImg);
@@ -104,7 +105,7 @@ public class mygui extends JPanel
 		add(proceed, BorderLayout.CENTER);
 	}
 	
-	public void dirBrowser()
+	void dirBrowser()
 	{
 		chooser = new JFileChooser();	
 		chooser.setCurrentDirectory(new File(workingDirectory += "\\.minecraft"));		
@@ -117,7 +118,7 @@ public class mygui extends JPanel
 		}
 	}
 	
-	public static void findMinecraftDir()
+	static void findMinecraftDir()
 	{
 		String OS = (System.getProperty("os.name")).toUpperCase();
 		if (OS.contains("WIN"))

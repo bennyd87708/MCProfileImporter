@@ -8,6 +8,8 @@
   <description>a tool for importing custom modpacks into the Minecraft launcher</description>
   <build>
     <sourceDirectory>src</sourceDirectory>
+	<outputDirectory>bin/classes</outputDirectory>
+	<directory>${buildDirectory}</directory>
     <resources>
       <resource>
         <directory>src</directory>
@@ -53,5 +55,6 @@
   <properties>
     <maven.compiler.source>7</maven.compiler.source>
     <maven.compiler.target>7</maven.compiler.target>
+    <buildDirectory>${project.basedir}/bin</buildDirectory>
   </properties>
 </project>

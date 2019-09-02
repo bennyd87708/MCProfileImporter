@@ -1,4 +1,0 @@
-[submodule "lib/common"]
-	path = lib/common
-	url = git://github.com/apache/commons-io.git
-	branch = release

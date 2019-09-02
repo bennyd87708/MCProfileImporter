@@ -20,8 +20,7 @@ import java.util.zip.ZipFile;
 
 import javax.swing.*;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.*;
 
 public class copydir extends JPanel implements ActionListener
 {

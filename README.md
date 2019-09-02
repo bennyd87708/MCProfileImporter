@@ -12,6 +12,7 @@ MCProfileImporter is a tool for importing custom modpacks directly into the Mine
 - Edit "src\main\resources\gui\text.txt" first line to change the text that appears in the launcher
 - Edit "src\main\resources\gui\text.txt" second line to change the pack name
 - Build with Maven - "mvn install"
+- Finished jar executable is in the \target folder
 
 ---
 

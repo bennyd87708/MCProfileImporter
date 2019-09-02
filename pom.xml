@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>MCProfileImporter</groupId>
   <artifactId>MCProfileImporter</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>v0.2-alpha</version>
   <name>MCProfileImporter</name>
   <packaging>jar</packaging>
   <description>a tool for importing custom modpacks into the Minecraft launcher</description>

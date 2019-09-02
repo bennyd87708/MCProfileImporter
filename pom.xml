@@ -4,6 +4,7 @@
   <artifactId>MCProfileImporter</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>MCProfileImporter</name>
+  <packaging>jar</packaging>
   <description>a tool for importing custom modpacks into the Minecraft launcher</description>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -17,12 +18,27 @@
     </resources>
     <plugins>
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.0</version>
+        <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <archive>
+            <manifest>
+              <mainClass>main.java.com.benny.mcprofileimporter.mygui</mainClass>
+            </manifest>
+          </archive>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <appendAssemblyId>false</appendAssemblyId>
         </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
@@ -34,4 +50,8 @@
   		<version>2.6</version>
   	</dependency>
   </dependencies>
+  <properties>
+    <maven.compiler.source>7</maven.compiler.source>
+    <maven.compiler.target>7</maven.compiler.target>
+  </properties>
 </project>

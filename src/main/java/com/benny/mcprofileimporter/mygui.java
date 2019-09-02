@@ -32,7 +32,7 @@ public class mygui extends JPanel
 	
 	public static String workingDirectory;
 	
-	public static void main(String[] args) throws IOException
+	public static void main(String[] args)
 	{
 		findMinecraftDir();
 		mygui panel = new mygui();
@@ -51,13 +51,18 @@ public class mygui extends JPanel
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 	}
 	
-	public mygui() throws IOException
+	public mygui()
 	{
 		text = new Scanner(getClass().getResourceAsStream("/main/resources/gui/text.txt"), "UTF-8");
 	    BufferedImage resizedImg = new BufferedImage(70, 70, BufferedImage.TYPE_INT_ARGB);
 	    Graphics2D g2 = resizedImg.createGraphics();
 	    g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-	    g2.drawImage(ImageIO.read(getClass().getResourceAsStream("/main/resources/gui/logo.png")), 0, 0, 70, 70, null);
+	    try {
+			g2.drawImage(ImageIO.read(getClass().getResourceAsStream("/main/resources/gui/logo.png")), 0, 0, 70, 70, null);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	    g2.dispose();
 		icon = new ImageIcon(resizedImg);
 		intro = new JLabel(text.nextLine(), icon, JLabel.CENTER);

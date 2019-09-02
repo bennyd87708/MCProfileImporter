@@ -118,7 +118,7 @@ public class copydir extends JPanel implements ActionListener
 		  zipFile.close();
 		}
 		
-		System.out.println("Copying Files");
+		System.out.println("Copying More Files");
 		FileUtils.copyDirectory(new File(packloc + "\\versions"), new File(minecraft + "\\versions"));
 		FileUtils.copyDirectory(new File(packloc + "\\libraries"), new File(minecraft + "\\libraries"));
 		

@@ -46,7 +46,7 @@ public class mygui extends JPanel
 			}
 		});
 		frame.add(panel,"Center");
-		frame.setSize(350, 250);
+		frame.setSize(350, 270);
 		frame.setVisible(true);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 	}
@@ -67,7 +67,6 @@ public class mygui extends JPanel
 		info = new JLabel("select .minecraft directory if non-default", JLabel.CENTER);
 		info.setAlignmentX(Component.CENTER_ALIGNMENT);
 		directory = new JTextField(workingDirectory += "\\.minecraft");
-			directory.setText("C:\\Users\\bennyd87708\\Desktop\\testing\\.testversion");
 		browser = new JPanel();
 		browser.setLayout(new BoxLayout(browser, BoxLayout.LINE_AXIS));
 		browser.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 10));
@@ -96,6 +95,7 @@ public class mygui extends JPanel
 		reminder = new JLabel("make sure your MC launcher is closed!");
 		reminder.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(reminder);
+		add(Box.createRigidArea(new Dimension(0, 5)));
 		add(proceed, BorderLayout.CENTER);
 	}
 	

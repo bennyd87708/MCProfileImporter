@@ -32,6 +32,7 @@ public class mygui extends JPanel
 	String choosertitle;
 	ImageIcon icon;
 	Image image;
+	ImageIcon bigicon;
 	
 	public static void main(String[] args)
 	{
@@ -50,6 +51,7 @@ public class mygui extends JPanel
 		frame.add(panel,"Center");
 		frame.setSize(350, 270);
 		frame.setVisible(true);
+		frame.setIconImage(panel.bigicon.getImage());
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 	}
 	
@@ -65,6 +67,13 @@ public class mygui extends JPanel
 			JOptionPane.showMessageDialog(new JFrame(), e1.toString(), "Dialog", JOptionPane.ERROR_MESSAGE);
 		}
 	    g2.dispose();
+		BufferedImage bigImg = new BufferedImage(256, 256, BufferedImage.TYPE_INT_ARGB);
+		try {
+			bigImg = ImageIO.read(getClass().getResourceAsStream("/main/resources/gui/logo.png"));
+		} catch (IOException e1) {
+			JOptionPane.showMessageDialog(new JFrame(), e1.toString(), "Dialog", JOptionPane.ERROR_MESSAGE);
+		}
+		bigicon = new ImageIcon(bigImg);
 		icon = new ImageIcon(resizedImg);
 		intro = new JLabel(text.nextLine(), icon, JLabel.CENTER);
 		intro.setVerticalTextPosition(JLabel.BOTTOM);

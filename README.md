@@ -8,7 +8,7 @@ MCProfileImporter is a tool for importing custom modpacks directly into the Mine
 - Create custom "pack.zip" containing everything necessary from .minecraft folder - should include necessary versions, mods, libraries, config, etc.
 - Replace "src\main\resources\modpack\pack.zip" with your own "pack.zip"
 - Edit "src\main\resources\modpack\profile.json" as desired - these are the parameters for the profile in the Minecraft launcher - you can add your own parameters like jvm arguments for example
-- Replace "src\main\resources\gui\logo.png" with your own square logo - should be at least 70x70px but smaller will work
+- Replace "src\main\resources\gui\logo.png" with your own square logo - should be at least 70x70px but larger will work
 - Edit "src\main\resources\gui\text.txt" first line to change the text that appears in the launcher
 - Edit "src\main\resources\gui\text.txt" second line to change the pack folder name
 - Build with Maven - "mvn install"
